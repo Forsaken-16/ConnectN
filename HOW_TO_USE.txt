@@ -1,0 +1,35 @@
+CONNECT N - HOW TO USE
+======================
+
+Run the game:
+    pip install -r requirements.txt
+    python ui.py
+
+Controls:
+    Click a column  - drop a piece
+    R               - restart
+
+Rules:
+    - Red moves first, then players take turns.
+    - A piece falls to the lowest empty cell in the column you pick.
+    - First to get N in a row (across, down or diagonal) wins.
+    - If the board fills up with no winner, it's a draw.
+
+Files:
+    game.py     The rules: the board, dropping pieces, checking for a win or draw.
+    players.py  The players: HumanPlayer (mouse), RandomPlayer, and AIPlayer.
+    ui.py       The game window and animations. Settings are at the top.
+
+Settings (top of ui.py):
+    ROWS, COLS, N   board size and how many in a row to win
+    PLAYER1         who plays Red     (players.HumanPlayer / RandomPlayer / AIPlayer)
+    PLAYER2         who plays Yellow
+
+Adding your AI:
+    Write your code in AIPlayer.get_move() in players.py.
+    - board is a copy of the game board: board[row][col], row 0 is the top.
+      Cells are 0 (empty), 1 (Red) or 2 (Yellow).
+    - self.piece is your piece (1 or 2), self.n is how many in a row to win.
+    - Return the column number you want to play.
+    Useful: game.legal_moves(board), game.drop_piece(board, col, piece),
+            game.winning_line(board, piece, n), game.is_draw(board)
