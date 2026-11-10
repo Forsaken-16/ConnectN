@@ -4,6 +4,8 @@ players.py - The players. Each one has get_move(board) that returns a column.
 
 import random
 
+import heuristic
+
 import game
 
 
