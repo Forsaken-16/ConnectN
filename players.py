@@ -8,6 +8,7 @@ import heuristic
 
 import game
 
+import search 
 
 class HumanPlayer:
     """Moves come from mouse clicks in ui.py."""
@@ -33,7 +34,7 @@ class RandomPlayer:
 class AIPlayer:
     """Your AI goes here."""
     is_human = False
-
+    depth = 4
     def __init__(self, piece, n):
         self.piece = piece   # game.PLAYER1 or game.PLAYER2
         self.n = n           # how many in a row to win
@@ -41,4 +42,4 @@ class AIPlayer:
     def get_move(self, board):
         # TODO: write your AI here. Return a column number that is not full.
         # For now it just plays randomly.
-        return random.choice(game.legal_moves(board))
+        return search.best_move(board, self.depth, 0, self.piece, self.n)

@@ -42,7 +42,8 @@ def drop_piece(board, col, piece):
     raise ValueError("Column is full")
     
 
-def winning_line(board, row, col, piece, n):
+def winning_line(board, cell, piece, n):
+    rows, col = cell
     rows, cols = len(board), len(board[0])
     #left_right, up_down, neg_diag, pos_diag
     for dr, dc in [(0, 1), (1, 0), (1, 1), (1, -1)]:

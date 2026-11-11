@@ -30,7 +30,8 @@ def score_frame(board, frame):
 
 
 
-def traverse_through_frames(board, row, col, n):
+def traverse_through_frames(board, (row, col), n):
+    row, col = cell
     rows, cols = len(board), len(board[0])
     
     '''up down'''
@@ -51,7 +52,9 @@ def traverse_through_frames(board, row, col, n):
     for i in range(0, length - n + 1):
         score_neg_diagonal += score_frame(board, make_frame(new_row + i , new_col + i, 1, 1, n) )
 
-    '''+ve diagonal'''
+    '''+ve diagonal'''    if depth < 0:
+        ValueError("invalid depth value")
+
     score_pos_diagonal = 0
     m = min(row, cols -(col+1))
     new_row, new_col = row - m, col + m
@@ -64,7 +67,8 @@ def traverse_through_frames(board, row, col, n):
 
 
 
-def heuristic(board, row, col, h_old, n, piece):
+def heuristic(board, (row, col), h_old, n, piece):
+    row, col = cell
     s_old = traverse_through_frames(board, row, col, n)
     board[row][col] = piece
     s_new = traverse_through_frames(board, row, col, n)

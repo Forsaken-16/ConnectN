@@ -91,7 +91,7 @@ class Game:
     def land(self, col):
         """The piece reached the bottom: add it to the board and check the result."""
         row =game.drop_piece(self.board, col, self.turn)
-        self.win_line = game.winning_line(self.board,row, col,  self.turn, N)
+        self.win_line = game.winning_line(self.board, (row, col),  self.turn, N)
         if self.win_line:
             self.winner = self.turn
         elif game.is_draw(self.board):
