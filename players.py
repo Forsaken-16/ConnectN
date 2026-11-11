@@ -34,12 +34,12 @@ class RandomPlayer:
 class AIPlayer:
     """Your AI goes here."""
     is_human = False
-    depth = 4
+    depth = 6
     def __init__(self, piece, n):
         self.piece = piece   # game.PLAYER1 or game.PLAYER2
         self.n = n           # how many in a row to win
 
     def get_move(self, board):
-        # TODO: write your AI here. Return a column number that is not full.
-        # For now it just plays randomly.
+        # FIX (comment only): old comment said "it just plays randomly" - it now uses
+        # the minimax search in search.py. Returns a column number that is not full.
         return search.best_move(board, self.depth, 0, self.piece, self.n)

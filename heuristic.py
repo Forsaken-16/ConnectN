@@ -30,7 +30,7 @@ def score_frame(board, frame):
 
 
 
-def traverse_through_frames(board, (row, col), n):
+def traverse_through_frames(board, cell, n):
     row, col = cell
     rows, cols = len(board), len(board[0])
     
@@ -52,8 +52,10 @@ def traverse_through_frames(board, (row, col), n):
     for i in range(0, length - n + 1):
         score_neg_diagonal += score_frame(board, make_frame(new_row + i , new_col + i, 1, 1, n) )
 
-    '''+ve diagonal'''    if depth < 0:
-        ValueError("invalid depth value")
+    '''+ve diagonal'''
+    # FIX: removed a stray `if depth < 0: ValueError(...)` that was here.
+    # `depth` doesn't exist in this function (NameError on every call), and the
+    # ValueError was never raised anyway. Depth is already validated in search.best_move.
 
     score_pos_diagonal = 0
     m = min(row, cols -(col+1))
@@ -67,10 +69,11 @@ def traverse_through_frames(board, (row, col), n):
 
 
 
-def heuristic(board, (row, col), h_old, n, piece):
+def heuristic(board, cell, h_old, n, piece):
     row, col = cell
-    s_old = traverse_through_frames(board, row, col, n)
+    # FIX: traverse_through_frames takes (board, cell, n), not (board, row, col, n)
+    s_old = traverse_through_frames(board, cell, n)
     board[row][col] = piece
-    s_new = traverse_through_frames(board, row, col, n)
+    s_new = traverse_through_frames(board, cell, n)
     return h_old + (s_new - s_old)
 

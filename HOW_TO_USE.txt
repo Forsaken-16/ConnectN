@@ -32,4 +32,4 @@ Adding your AI:
     - self.piece is your piece (1 or 2), self.n is how many in a row to win.
     - Return the column number you want to play.
     Useful: game.legal_moves(board), game.drop_piece(board, col, piece),
-            game.winning_line(board, piece, n), game.is_draw(board)
+            game.winning_line(board, (row, col), piece, n)   # FIX: doc matched old signature, game.is_draw(board)

@@ -43,7 +43,9 @@ def drop_piece(board, col, piece):
     
 
 def winning_line(board, cell, piece, n):
-    rows, col = cell
+    # FIX: was `rows, col = cell`, so `row` was undefined (NameError) and `rows`
+    # got overwritten on the next line anyway.
+    row, col = cell
     rows, cols = len(board), len(board[0])
     #left_right, up_down, neg_diag, pos_diag
     for dr, dc in [(0, 1), (1, 0), (1, 1), (1, -1)]:
